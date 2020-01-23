@@ -1,0 +1,94 @@
+unit Unit2;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, unit3, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.StdCtrls, Vcl.Buttons;
+
+type
+  TFormAltaCliente = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    EditClienteId: TEdit;
+    EditClienteCuit: TEdit;
+    EditClienteNombre: TEdit;
+    EditClienteApellido: TEdit;
+    EditClienteDireccion: TEdit;
+    EditClienteTelefono: TEdit;
+    EditClienteCelular: TEdit;
+    EditClienteMail: TEdit;
+    DBGrid1: TDBGrid;
+    BitBtn1: TBitBtn;
+    procedure BitBtn1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+  TCliente = class
+    Id: Integer;
+    Cuit: Integer;
+    Nombre: String;
+    Apellido: String;
+    Direccion: String;
+    Telefono: Integer;
+    Celular: Integer;
+    Mail: String;
+  end;
+
+var
+  FormAltaCliente: TFormAltaCliente;
+  cliente: TCliente;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFormAltaCliente.BitBtn1Click(Sender: TObject);
+begin
+
+  cliente.Id := StrToInt(EditClienteId.Text);
+  cliente.Cuit := StrToInt(EditClienteCuit.Text);
+  cliente.Nombre := EditClienteNombre.Text;
+  cliente.Apellido := EditClienteApellido.Text;
+  cliente.Direccion := EditClienteDireccion.Text;
+  cliente.Telefono := StrToInt(EditClienteTelefono.Text);
+  cliente.Celular := StrToInt(EditClienteCelular.Text);
+  cliente.Mail := EditClienteMail.Text;
+
+
+  with DataModule3 do
+  begin
+
+
+    //FDQuery1.Close();
+
+    FDQuery1.SQL.Text :=  'insert into cliente values (:id,:cuit)';
+    FDQuery1.Params.ParamByName('id').AsString := EditClienteNombre.Text;
+    FDQuery1.Params.ParamByName('nombre').AsString := EditClienteNombre.Text;
+    //FDQuery1.SQL.Text :=  ' insert into cliente values ('+EditClienteId.Text+')' ;
+    FDquery1.ExecSQL;
+    //FDQuery1.Insert;
+    //FDQuery1.FieldByName('nombre').AsString := EditClienteNombre.Text;
+    //FDQuery1.Transaction := FDTransaction1;
+    //FDQuery1.SQL.Text :=  ' INSERT INTO cliente VALUES (:id,:cuit, :nombre, :apellido, ' +
+    //                      ' :direccion, :telefono, :celular, :mail) ';
+    //FDQuery1.Post;
+    //FDQuery1.Open();
+    //FDTransaction1.StartTransaction;
+
+    //fdquery1.Refresh;
+
+  end;
+end;
+
+end.

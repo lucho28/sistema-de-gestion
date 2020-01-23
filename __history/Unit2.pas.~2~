@@ -1,0 +1,54 @@
+unit Unit2;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, unit3, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.StdCtrls;
+
+type
+  TFormAltaCliente = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    EditClienteId: TEdit;
+    EditClienteCuit: TEdit;
+    EditClienteNombre: TEdit;
+    EditClienteApellido: TEdit;
+    EditClienteDireccion: TEdit;
+    EditClienteTelefono: TEdit;
+    EditClienteCelular: TEdit;
+    EditClienteMail: TEdit;
+    DBGrid1: TDBGrid;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+  TCliente = class
+    Id: Integer;
+    Cuit: Integer;
+    Nombre: String;
+    Apellido: String;
+    Direccion: String;
+    Telefono: Integer;
+    Celular: Integer;
+    Mail: String;
+  end;
+
+var
+  FormAltaCliente: TFormAltaCliente;
+  cliente: TCliente;
+
+implementation
+
+{$R *.dfm}
+
+end.
